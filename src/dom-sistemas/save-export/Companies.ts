@@ -19,4 +19,4 @@ export default class Companies {
 }
 
 const companies = new Companies()
-companies.save().then(result => console.log(result))
+companies.save().then(_ => console.log('- [dom-sistemas_save-export_Companies_exportCompanies] Empresas Exportadas com sucesso.'))
