@@ -4,12 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "node dist/schedules/server.js",
     "build": "rimraf dist && tsc",
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly --ignore-watch node_modules src/queue"
   },
   "dependencies": {
     "@types/node": "14.0.14",
     "axios": "0.19.2",
+    "cron": "^1.8.2",
     "dotenv": "8.2.0",
     "express": "4.17.1",
     "odbc": "2.3.0"
