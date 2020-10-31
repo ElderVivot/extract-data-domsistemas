@@ -37,5 +37,5 @@ export default class Companies {
     }
 }
 
-// const companies = new Companies()
-// companies.export().then(result => console.log(result))
+const companies = new Companies()
+companies.export().then(result => console.log(result))
