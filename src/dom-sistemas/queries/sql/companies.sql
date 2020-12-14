@@ -12,7 +12,8 @@ SELECT emp.codi_emp AS code,
        emp.dcad_emp AS dateInicialAsClient,
        emp.dina_emp AS dateFinalAsClient,
        emp.iest_emp AS inscricaoEstadual,
-       emp.imun_emp AS inscricaoMunicipal
+       emp.imun_emp AS inscricaoMunicipal,
+       emp.esta_emp AS uf
        
   FROM bethadba.geempre AS emp
 
