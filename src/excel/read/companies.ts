@@ -22,7 +22,6 @@ export class Companies {
                 companie.fone = null
                 companie.email = null
                 companie.ramo = null
-                companie.inscricaoEstadual = null
                 companie.nickName = companie.name
                 this.companies.push(companie)
             }
