@@ -46,4 +46,3 @@ goto check_Permissions
   :: Start the service
   nssm start %SERVICE_NAME%
   echo Successfully installed and started service %SERVICE_NAME%
-  pause
