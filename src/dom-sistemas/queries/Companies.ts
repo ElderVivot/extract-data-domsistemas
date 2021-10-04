@@ -25,7 +25,14 @@ export default class Companies {
                     emp.dina_emp AS dateFinalAsClient,
                     emp.iest_emp AS inscricaoEstadual,
                     emp.imun_emp AS inscricaoMunicipal,
-                    emp.esta_emp AS uf
+                    emp.esta_emp AS uf,
+                    COALESCE( (SELECT vig.RFED_PAR
+                        FROM bethadba.EFPARAMETRO_VIGENCIA AS vig
+                       WHERE vig.CODI_EMP = emp.codi_emp 
+                         AND vig.VIGENCIA_PAR = (SELECT max(vig2.VIGENCIA_PAR )
+                                                   FROM bethadba.EFPARAMETRO_VIGENCIA AS vig2
+                                                  WHERE vig2.codi_emp = emp.codi_emp 
+                                                    AND vig2.VIGENCIA_PAR <= today() )), 99 ) AS regimeFiscal
             
                FROM bethadba.geempre AS emp
             
