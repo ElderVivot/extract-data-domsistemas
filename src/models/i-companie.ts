@@ -1,12 +1,12 @@
 export interface ICompanie {
-    code: number
+    codeCompanieAccountSystem: number
     name: string
     nickName: string
-    typeCgce: number
-    cgce: string
+    typeFederalRegistration: string
+    federalRegistration: string
     status: string
-    ddd: string
-    fone: string
+    dddPhone: string
+    phone: string
     email: string
     ramo: string
     dateInicialAsCompanie: string
@@ -14,4 +14,12 @@ export interface ICompanie {
     dateFinalAsClient: string
     inscricaoEstadual: string
     inscricaoMunicipal: string
+    taxRegime: string
+    idIbgeCity: number
+    neighborhood: string
+    street: string
+    zipCode: string
+    complement: string
+    referency: string
+    cnaes: string
 }
