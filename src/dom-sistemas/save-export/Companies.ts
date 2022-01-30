@@ -21,7 +21,6 @@ export default class Companies {
                     companie.typeFederalRegistration = correlationTypeCgce(companie.typeFederalRegistration)
                     companie.status = correlationStatus(companie.status)
                     companie.taxRegime = correlationTaxRegime(companie.taxRegime.toString())
-                    companie.idIbgeCity = 520008
                     companie.neighborhood = ''
                     companie.street = ''
                     companie.zipCode = ''

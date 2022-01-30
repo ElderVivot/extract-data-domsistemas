@@ -1,5 +1,6 @@
 
 import axios from 'axios'
+import 'dotenv/config'
 
 import { api } from '../../services/api'
 import StatesQuerie from '../queries/States'
@@ -25,7 +26,7 @@ export default class States {
                     console.log(`\t- Salvo estado ${result.name} - ${result.acronym}`)
                 } catch (error) {
                     console.log(`\t- Erro ao salvar estado ${result.name} - ${result.acronym}`)
-                    if (axios.isAxiosError(error)) console.log(error.response?.data || error.response)
+                    if (axios.isAxiosError(error)) console.log(error.response?.data || error.toJSON())
                     else console.log(error)
                 }
             }

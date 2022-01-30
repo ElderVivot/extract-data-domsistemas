@@ -1,5 +1,6 @@
 
 import axios from 'axios'
+import 'dotenv/config'
 
 import { api } from '../../services/api'
 import CityQuerie from '../queries/City'
@@ -26,7 +27,7 @@ export default class City {
                     console.log(`\t- Salvo cidade ${result.name} - ${result.acronymState} - ${result.idIbge}`)
                 } catch (error) {
                     console.log(`\t- Erro ao salvar cidade ${result.name} - ${result.acronymState} - ${result.idIbge}`)
-                    if (axios.isAxiosError(error)) console.log(error.response?.data || error.response)
+                    if (axios.isAxiosError(error)) console.log(error.response?.data || error.toJSON())
                     else console.log(error)
                 }
             }
