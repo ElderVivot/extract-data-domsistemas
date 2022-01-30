@@ -27,8 +27,8 @@ export default class Companies {
                     companie.zipCode = ''
                     companie.complement = ''
                     companie.referency = ''
-                    companie.stateRegistration = companie.stateRegistration.toString()
-                    companie.cityRegistration = companie.cityRegistration.toString()
+                    companie.stateRegistration = companie.stateRegistration ? companie.stateRegistration.toString() : ''
+                    companie.cityRegistration = companie.cityRegistration ? companie.cityRegistration.toString() : ''
                     await api.post('/companie', { ...companie }, { headers: { tenant: process.env.TENANT } })
                     console.log(`\t- Salvo empresa ${companie.codeCompanieAccountSystem} - ${companie.federalRegistration} - ${companie.name}`)
                 } catch (error) {
