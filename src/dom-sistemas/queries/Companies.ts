@@ -26,9 +26,9 @@ export default class Companies {
                     emp.imun_emp AS cityRegistration,
                     emp.esta_emp AS uf,
                     COALESCE(emp.i_cnae20, '') || ',' ||
-                       ( SELECT LIST(cnae_sec.codigo_cnae)
+                       COALESCE( ( SELECT LIST(cnae_sec.codigo_cnae)
                            FROM bethadba.geatvsecundaria AS cnae_sec
-                          WHERE cnae_sec.codi_emp = emp.codi_emp ) AS cnaes, 
+                          WHERE cnae_sec.codi_emp = emp.codi_emp ), '' ) AS cnaes, 
                     COALESCE( ( SELECT mun.codigo_ibge
                                   FROM bethadba.gemunicipio AS mun
                                  WHERE mun.codigo_municipio = emp.codigo_municipio ) , '' ) AS idIbgeCity,

@@ -1,5 +1,5 @@
 export interface ICompanie {
-    codeCompanieAccountSystem: number
+    codeCompanieAccountSystem: string
     name: string
     nickName: string
     typeFederalRegistration: string
@@ -22,4 +22,6 @@ export interface ICompanie {
     complement: string
     referency: string
     cnaes: string
+    stateRegistration: string
+    cityRegistration: string
 }

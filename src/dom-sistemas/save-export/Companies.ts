@@ -18,6 +18,7 @@ export default class Companies {
             const resultQuerie: ICompanie[] = await this.companies.export()
             for (const companie of resultQuerie) {
                 try {
+                    companie.codeCompanieAccountSystem = companie.codeCompanieAccountSystem.toString()
                     companie.typeFederalRegistration = correlationTypeCgce(companie.typeFederalRegistration)
                     companie.status = correlationStatus(companie.status)
                     companie.taxRegime = correlationTaxRegime(companie.taxRegime.toString())
@@ -26,6 +27,8 @@ export default class Companies {
                     companie.zipCode = ''
                     companie.complement = ''
                     companie.referency = ''
+                    companie.stateRegistration = companie.stateRegistration.toString()
+                    companie.cityRegistration = companie.cityRegistration.toString()
                     await api.post('/companie', { ...companie }, { headers: { tenant: process.env.TENANT } })
                     console.log(`\t- Salvo empresa ${companie.codeCompanieAccountSystem} - ${companie.federalRegistration} - ${companie.name}`)
                 } catch (error) {
