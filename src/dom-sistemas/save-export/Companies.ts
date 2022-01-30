@@ -26,12 +26,11 @@ export default class Companies {
                     companie.zipCode = ''
                     companie.complement = ''
                     companie.referency = ''
-                    companie.cnaes = ''
                     await api.post('/companie', { ...companie }, { headers: { tenant: process.env.TENANT } })
                     console.log(`\t- Salvo empresa ${companie.codeCompanieAccountSystem} - ${companie.federalRegistration} - ${companie.name}`)
                 } catch (error) {
                     console.log(`\t- erro ao salvar empresa ${companie.codeCompanieAccountSystem} - ${companie.federalRegistration} - ${companie.name}`)
-                    if (axios.isAxiosError(error)) console.log(error.response?.data || error.response, { ...companie })
+                    if (axios.isAxiosError(error)) console.log(error.response?.data || error.toJSON(), { ...companie })
                     else console.log(error)
                 }
             }
