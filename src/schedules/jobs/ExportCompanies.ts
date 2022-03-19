@@ -1,18 +1,17 @@
 import { CronJob } from 'cron'
 import 'dotenv/config'
 
-import CompaniesDomSistemas from '../../dom-sistemas/save-export/Companies'
-import { Companies as CompaniesExcel } from '../../excel/save-export/Companies'
+import { Companies } from '../../save-export/Companies'
 
 async function processExport () {
-    if (process.env.ACCOUNT_SYSTEM === 'excel') {
-        const companies = new CompaniesExcel()
-        companies.save()
-    } else {
-        const companies = new CompaniesDomSistemas()
-        companies.save()
-    }
+    let accountSystem = 'dominio_sistemas'
+    if (process.env.ACCOUNT_SYSTEM === 'excel') accountSystem = 'excel'
+
+    const companies = new Companies(accountSystem)
+    companies.save()
 }
+
+processExport().then(_ => console.log(_))
 
 const job = new CronJob(
     '30 18 * * *',

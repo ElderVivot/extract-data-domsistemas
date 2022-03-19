@@ -2,7 +2,7 @@ import { Connection } from 'odbc'
 
 import DB from '../db'
 
-export default class Companies {
+export class CompaniesDomSistemas {
     private db: DB
     private connection: Connection | void
     private sql: string

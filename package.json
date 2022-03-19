@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/schedules/server.js",
     "build": "rimraf dist && tsc",
-    "dev": "ts-node-dev --no-notify --respawn --transpileOnly --ignore-watch node_modules src/schedules/server.ts"
+    "dev": "ts-node src/schedules/server.ts"
   },
   "dependencies": {
     "axios": "^0.22.0",

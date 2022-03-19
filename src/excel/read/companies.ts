@@ -4,7 +4,7 @@ import xlsx from 'xlsx'
 import 'dotenv/config'
 import { ICompanie } from '../../models/i-companie'
 
-export class Companies {
+export class CompaniesExcel {
     private companies: Array<ICompanie> = []
 
     export (): any {
@@ -13,15 +13,10 @@ export class Companies {
             const sheetNameList = workbook.SheetNames
             const sheetToJson: Array<ICompanie> = xlsx.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]])
             for (const companie of sheetToJson) {
-                const { dateInicialAsCompanie, dateInicialAsClient, dateFinalAsClient, federalRegistration } = companie
-                companie.federalRegistration = federalRegistration.normalize('NFD').replace(/([^0-9])/g, '')
+                const { dateInicialAsCompanie, dateInicialAsClient, dateFinalAsClient } = companie
                 companie.dateInicialAsCompanie = dateInicialAsCompanie ? format(zonedTimeToUtc(dateInicialAsCompanie, 'America/Sao_Paulo'), 'yyyy-MM-dd', { timeZone: 'America/Sao_Paulo' }) : null
                 companie.dateInicialAsClient = dateInicialAsClient ? format(zonedTimeToUtc(dateInicialAsClient, 'America/Sao_Paulo'), 'yyyy-MM-dd', { timeZone: 'America/Sao_Paulo' }) : null
                 companie.dateFinalAsClient = dateFinalAsClient ? format(zonedTimeToUtc(dateFinalAsClient, 'America/Sao_Paulo'), 'yyyy-MM-dd', { timeZone: 'America/Sao_Paulo' }) : null
-                companie.dddPhone = null
-                companie.phone = null
-                companie.email = null
-                companie.ramo = null
                 companie.nickName = companie.name
                 this.companies.push(companie)
             }

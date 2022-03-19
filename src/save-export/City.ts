@@ -2,8 +2,8 @@
 import axios from 'axios'
 import 'dotenv/config'
 
-import { api } from '../../services/api'
-import CityQuerie from '../queries/City'
+import CityQuerie from '../dom-sistemas/queries/City'
+import { api } from '../services/api'
 
 interface ICity {
     name: string

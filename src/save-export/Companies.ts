@@ -1,16 +1,19 @@
 
 import axios from 'axios'
 
-import { ICompanie } from '../../models/i-companie'
-import { api } from '../../services/api'
-import { correlationStatus, correlationTaxRegime, correlationTypeCgce } from '../../services/functions'
-import CompaniesQuerie from '../queries/Companies'
+import { CompaniesDomSistemas } from '../dom-sistemas/queries/Companies'
+import { CompaniesExcel } from '../excel/read/companies'
+import { ICompanie } from '../models/i-companie'
+import { api } from '../services/api'
+import { correlationStatus, correlationTaxRegime, correlationTypeCgce } from '../services/functions'
 
-export default class Companies {
-    private companies: CompaniesQuerie
+export class Companies {
+    private companies: CompaniesDomSistemas | CompaniesExcel
 
-    constructor () {
-        this.companies = new CompaniesQuerie()
+    constructor (accountSystem: string) {
+        if (accountSystem === 'dominio_sistemas') this.companies = new CompaniesDomSistemas()
+        else if (accountSystem === 'excel') this.companies = new CompaniesExcel()
+        else this.companies = null
     }
 
     async save (): Promise<any> {
@@ -42,6 +45,3 @@ export default class Companies {
         }
     }
 }
-
-const companies = new Companies()
-companies.save().then(_ => console.log('- [dom-sistemas_save-export_Companies_exportCompanies] Empresas Exportadas com sucesso.'))

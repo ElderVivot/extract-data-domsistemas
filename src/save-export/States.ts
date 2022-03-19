@@ -2,8 +2,8 @@
 import axios from 'axios'
 import 'dotenv/config'
 
-import { api } from '../../services/api'
-import StatesQuerie from '../queries/States'
+import StatesQuerie from '../dom-sistemas/queries/States'
+import { api } from '../services/api'
 
 interface IStates {
     name: string
