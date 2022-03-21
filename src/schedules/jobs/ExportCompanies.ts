@@ -11,8 +11,6 @@ async function processExport () {
     await companies.save()
 }
 
-processExport().then(_ => console.log(_))
-
 const job = new CronJob(
     '30 18 * * *',
     async function () {
