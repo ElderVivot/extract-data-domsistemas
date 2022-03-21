@@ -5,7 +5,7 @@ export interface ICompanie {
     typeFederalRegistration: string
     federalRegistration: string
     status: string
-    dddPhone: string
+    dddPhone: number
     phone: string
     email: string
     ramo: string

@@ -13,11 +13,12 @@ export class CompaniesExcel {
             const sheetNameList = workbook.SheetNames
             const sheetToJson: Array<ICompanie> = xlsx.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]])
             for (const companie of sheetToJson) {
-                const { dateInicialAsCompanie, dateInicialAsClient, dateFinalAsClient } = companie
+                const { dateInicialAsCompanie, dateInicialAsClient, dateFinalAsClient, dddPhone } = companie
                 companie.dateInicialAsCompanie = dateInicialAsCompanie ? format(zonedTimeToUtc(dateInicialAsCompanie, 'America/Sao_Paulo'), 'yyyy-MM-dd', { timeZone: 'America/Sao_Paulo' }) : null
                 companie.dateInicialAsClient = dateInicialAsClient ? format(zonedTimeToUtc(dateInicialAsClient, 'America/Sao_Paulo'), 'yyyy-MM-dd', { timeZone: 'America/Sao_Paulo' }) : null
                 companie.dateFinalAsClient = dateFinalAsClient ? format(zonedTimeToUtc(dateFinalAsClient, 'America/Sao_Paulo'), 'yyyy-MM-dd', { timeZone: 'America/Sao_Paulo' }) : null
                 companie.nickName = companie.name
+                companie.dddPhone = Number(dddPhone)
                 this.companies.push(companie)
             }
             return this.companies

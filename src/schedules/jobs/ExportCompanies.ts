@@ -8,7 +8,7 @@ async function processExport () {
     if (process.env.ACCOUNT_SYSTEM === 'excel') accountSystem = 'excel'
 
     const companies = new Companies(accountSystem)
-    companies.save()
+    await companies.save()
 }
 
 processExport().then(_ => console.log(_))
