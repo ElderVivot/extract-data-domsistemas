@@ -22,7 +22,7 @@ export class Companies {
             for (const companie of resultQuerie) {
                 try {
                     companie.codeCompanieAccountSystem = companie.codeCompanieAccountSystem.toString()
-                    companie.typeFederalRegistration = correlationTypeCgce(companie.typeFederalRegistration)
+                    companie.typeFederalRegistration = correlationTypeCgce(companie.typeFederalRegistration.toString())
                     companie.status = correlationStatus(companie.status)
                     companie.taxRegime = correlationTaxRegime(companie.taxRegime.toString())
                     companie.neighborhood = ''
