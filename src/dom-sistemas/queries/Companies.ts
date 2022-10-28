@@ -38,7 +38,39 @@ export class CompaniesDomSistemas {
                          AND vig.VIGENCIA_PAR = (SELECT max(vig2.VIGENCIA_PAR )
                                                    FROM bethadba.EFPARAMETRO_VIGENCIA AS vig2
                                                   WHERE vig2.codi_emp = emp.codi_emp 
-                                                    AND vig2.VIGENCIA_PAR <= today() )), 99 ) AS taxRegime
+                                                    AND vig2.VIGENCIA_PAR <= today() )), 99 ) AS taxRegime,
+                    ( SELECT count( distinct fun.i_empregados )
+                        FROM bethadba.foempregados AS fun
+                        WHERE fun.CODI_EMP = emp.CODI_EMP 
+                            AND fun.tipo_epr = 1
+                            AND NOT EXISTS ( SELECT 1
+                                            FROM bethadba.forescisoes AS res
+                                            WHERE res.codi_emp = fun.codi_emp
+                                                AND res.i_empregados = fun.i_empregados
+                                                AND res.tipo in (1,2,3) ) ) AS employeesActive,
+                    ( SELECT count( distinct fun.i_empregados )
+                        FROM bethadba.foempregados AS fun
+                        WHERE fun.CODI_EMP = emp.CODI_EMP 
+                            AND fun.tipo_epr = 2
+                            AND fun.tipo_contrib = 'E'
+                            AND NOT EXISTS ( SELECT 1
+                                            FROM bethadba.foafastamentos AS afa
+                                            WHERE afa.codi_emp = fun.codi_emp
+                                                AND afa.i_empregados = fun.i_empregados
+                                                AND afa.i_afastamentos = 8 ) ) AS employersActive,
+                    ( SELECT COUNT(1)
+                        FROM bethadba.FOESOCIAL_DADOS_EVENTOS AS esocial                
+                        WHERE esocial.codi_emp = emp.codi_emp
+                            AND esocial.i_evento_esocial = 1000
+                            AND esocial.tipo_envio not in (3) /* nao eh exclusao */            
+                            AND esocial.validado = 1
+                            AND NOT EXISTS ( SELECT 1
+                                            FROM bethadba.foesocial_dados_eventos AS esocial2
+                                            WHERE esocial2.codi_emp = esocial.codi_emp
+                                                AND esocial2.i_evento_esocial = 3000
+                                                AND esocial2.tipo_envio = 3
+                                                AND esocial2.i_evento_esocial_excluido = esocial.i_evento_esocial
+                                                AND esocial2.numero_recibo_excluido = esocial.numero_recibo ) ) AS qtdEventsS1000
             
                FROM bethadba.geempre AS emp
             

@@ -12,7 +12,7 @@ async function processExport () {
 }
 
 const job = new CronJob(
-    '30 18 * * *',
+    '0 */3 * * *', // each 3 hours in minute zero
     async function () {
         await processExport()
     },
