@@ -1,7 +1,8 @@
 import { CronJob } from 'cron'
-import 'dotenv/config'
 
+import 'dotenv/config'
 import { Companies } from '../../save-export/Companies'
+import { CompaniesData } from '../../save-export/CompaniesData'
 
 async function processExport () {
     let accountSystem = 'dominio_sistemas'
@@ -9,10 +10,13 @@ async function processExport () {
 
     const companies = new Companies(accountSystem)
     await companies.save()
+
+    const companiesData = new CompaniesData(accountSystem)
+    await companiesData.save()
 }
 
 const job = new CronJob(
-    '0 */3 * * *', // each 3 hours in minute zero
+    '32 22 * * *', // each 3 hours in minute zero
     async function () {
         await processExport()
     },

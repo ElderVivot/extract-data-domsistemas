@@ -23,7 +23,7 @@ export class Companies {
                 try {
                     companie.codeCompanieAccountSystem = companie.codeCompanieAccountSystem.toString()
                     companie.typeFederalRegistration = correlationTypeCgce(companie.typeFederalRegistration.toString())
-                    if (companie.dateFinalAsClient) {companie.status = 'I'}
+                    if (companie.dateFinalAsClient) { companie.status = 'I' }
                     companie.status = correlationStatus(companie.status)
                     companie.taxRegime = correlationTaxRegime(companie.taxRegime.toString())
                     companie.neighborhood = ''
