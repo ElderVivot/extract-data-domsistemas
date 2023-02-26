@@ -15,8 +15,10 @@ async function processExport () {
     await companiesData.save()
 }
 
+processExport().then(_ => console.log(_))
+
 const job = new CronJob(
-    '32 22 * * *', // each 3 hours in minute zero
+    '10 */3 * * *', // each 3 hours in minute 10
     async function () {
         await processExport()
     },

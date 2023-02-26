@@ -10,7 +10,9 @@ export class CompaniesDataQuerie {
     constructor () {
         this.db = new DB()
         this.sql = `
-            SELECT  emp.codi_emp AS codeCompanieAccountSystem, COALESCE(TRIM(emp.cgce_emp), '') AS federalRegistration, emp.nome_emp AS name,
+            SELECT  emp.codi_emp AS codeCompanieAccountSystem, COALESCE(TRIM(emp.cgce_emp), '') AS federalRegistration, emp.nome_emp AS name, emp.ufol_emp AS markedFolhaModule,
+                    CASE WHEN parmto.codi_emp IS NOT NULL THEN 1 ELSE 0 END AS existParameterFolha,
+                    CASE WHEN parmto.enviar_dados_esocial IS NOT NULL THEN parmto.enviar_dados_esocial ELSE 0 END AS markedFolhaParameterToSendEsocial,
                     ( SELECT count( distinct fun.i_empregados )
                         FROM bethadba.foempregados AS fun
                         WHERE fun.CODI_EMP = emp.CODI_EMP 
@@ -63,6 +65,10 @@ export class CompaniesDataQuerie {
                     ), '' ) AS lastDateContribuinteResignation
                
                FROM bethadba.geempre AS emp
+                    LEFT JOIN bethadba.foparmto AS parmto
+                        ON    parmto.codi_emp = emp.codi_emp
+                        
+              WHERE emp.codi_emp <> 0
             
             ORDER BY emp.codi_emp
         `

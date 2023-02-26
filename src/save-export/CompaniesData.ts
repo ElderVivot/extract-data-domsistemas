@@ -17,9 +17,16 @@ export class CompaniesData {
         try {
             const resultQuerie: ICompanieData[] = await this.companiesData.export()
             for (const companieData of resultQuerie) {
-                const { codeCompanieAccountSystem, lastDateEmployeeResignation, lastDateContribuinteResignation } = companieData
+                const {
+                    codeCompanieAccountSystem, lastDateEmployeeResignation, lastDateContribuinteResignation, markedFolhaModule,
+                    existParameterFolha, markedFolhaParameterToSendEsocial
+                } = companieData
+
                 try {
                     companieData.codeCompanieAccountSystem = codeCompanieAccountSystem.toString()
+                    companieData.markedFolhaModule = markedFolhaModule.toString()
+                    companieData.existParameterFolha = existParameterFolha.toString()
+                    companieData.markedFolhaParameterToSendEsocial = markedFolhaParameterToSendEsocial.toString()
                     companieData.lastDateEmployeeResignation = !lastDateEmployeeResignation ? null : lastDateEmployeeResignation
                     companieData.lastDateContribuinteResignation = !lastDateContribuinteResignation ? null : lastDateContribuinteResignation
 

@@ -4,6 +4,7 @@ export function correlationTypeCgce (typeCgce: string): string {
     if (typeCgce === '1') return 'cnpj'
     else if (typeCgce === '2') return 'cpf'
     else if (typeCgce === '3') return 'cei'
+    else if (typeCgce === '6') return 'caepf'
     else return 'cnpj'
 }
 

@@ -10,4 +10,7 @@ export class ICompanieData {
     qtdEventsS1000: number
     lastDateEmployeeResignation: string
     lastDateContribuinteResignation: string
+    markedFolhaModule: string
+    existParameterFolha: string
+    markedFolhaParameterToSendEsocial: string
 }
