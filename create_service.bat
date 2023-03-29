@@ -26,8 +26,8 @@ goto check_Permissions
 :startInstallation
   echo Installing service
   :: Set your service name and its description here
-  set SERVICE_NAME=AeronExtractsNode
-  set SERVICE_DESCRIPTION=AeronExtractsNode
+  set SERVICE_NAME=AeronExtractsDominio
+  set SERVICE_DESCRIPTION=AeronExtractsDominio
 
   :: replace with the absolute path where node.exe can be found
   nssm install %SERVICE_NAME% "C:\Program Files\nodejs\node.exe"
