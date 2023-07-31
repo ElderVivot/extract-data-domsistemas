@@ -7,7 +7,7 @@ import { ICompanie } from '../models/i-companie'
 import { api } from '../services/api'
 import { correlationStatus, correlationTaxRegime, correlationTypeCgce } from '../services/functions'
 
-const CHECK_DATE_FINAL_COMPANIE_AS_INATIVE = process.env.CHECK_DATE_FINAL_COMPANIE_AS_INATIVE === 'true' || true
+const CHECK_DATE_FINAL_COMPANIE_AS_INATIVE = !process.env.CHECK_DATE_FINAL_COMPANIE_AS_INATIVE ? true : process.env.CHECK_DATE_FINAL_COMPANIE_AS_INATIVE === 'true'
 
 export class Companies {
     private companies: CompaniesDomSistemas | CompaniesExcel
@@ -22,6 +22,7 @@ export class Companies {
         try {
             const resultQuerie: ICompanie[] = await this.companies.export()
             for (const companie of resultQuerie) {
+                // if (companie.codeCompanieAccountSystem.toString() !== '272') continue
                 try {
                     companie.codeCompanieAccountSystem = companie.codeCompanieAccountSystem.toString()
                     companie.typeFederalRegistration = correlationTypeCgce(companie.typeFederalRegistration.toString())

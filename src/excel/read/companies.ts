@@ -4,7 +4,7 @@ import xlsx from 'xlsx'
 import 'dotenv/config'
 import { ICompanie } from '../../models/i-companie'
 
-const CHECK_DATE_FINAL_COMPANIE_AS_INATIVE = process.env.CHECK_DATE_FINAL_COMPANIE_AS_INATIVE === 'true' || true
+const CHECK_DATE_FINAL_COMPANIE_AS_INATIVE = !process.env.CHECK_DATE_FINAL_COMPANIE_AS_INATIVE ? true : process.env.CHECK_DATE_FINAL_COMPANIE_AS_INATIVE === 'true'
 
 export class CompaniesExcel {
     private companies: Array<ICompanie> = []
