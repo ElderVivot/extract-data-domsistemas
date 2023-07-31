@@ -4,6 +4,8 @@ import xlsx from 'xlsx'
 import 'dotenv/config'
 import { ICompanie } from '../../models/i-companie'
 
+const CHECK_DATE_FINAL_COMPANIE_AS_INATIVE = process.env.CHECK_DATE_FINAL_COMPANIE_AS_INATIVE === 'true' || true
+
 export class CompaniesExcel {
     private companies: Array<ICompanie> = []
 
@@ -17,7 +19,7 @@ export class CompaniesExcel {
                 companie.dateInicialAsCompanie = dateInicialAsCompanie ? format(zonedTimeToUtc(dateInicialAsCompanie, 'America/Sao_Paulo'), 'yyyy-MM-dd', { timeZone: 'America/Sao_Paulo' }) : null
                 companie.dateInicialAsClient = dateInicialAsClient ? format(zonedTimeToUtc(dateInicialAsClient, 'America/Sao_Paulo'), 'yyyy-MM-dd', { timeZone: 'America/Sao_Paulo' }) : null
                 companie.dateFinalAsClient = dateFinalAsClient ? format(zonedTimeToUtc(dateFinalAsClient, 'America/Sao_Paulo'), 'yyyy-MM-dd', { timeZone: 'America/Sao_Paulo' }) : null
-                if (dateFinalAsClient) {companie.status = 'I'}
+                if (dateFinalAsClient && CHECK_DATE_FINAL_COMPANIE_AS_INATIVE) { companie.status = 'I' }
                 companie.nickName = companie.name
                 companie.dddPhone = Number(dddPhone)
                 this.companies.push(companie)
