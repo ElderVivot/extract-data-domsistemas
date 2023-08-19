@@ -21,7 +21,8 @@ export class CompaniesExcel {
                 companie.dateFinalAsClient = dateFinalAsClient ? format(zonedTimeToUtc(dateFinalAsClient, 'America/Sao_Paulo'), 'yyyy-MM-dd', { timeZone: 'America/Sao_Paulo' }) : null
                 if (dateFinalAsClient && CHECK_DATE_FINAL_COMPANIE_AS_INATIVE) { companie.status = 'I' }
                 companie.nickName = companie.name
-                companie.dddPhone = Number(dddPhone)
+                companie.dddPhone = companie.dddPhone ? Number(dddPhone) : null
+                companie.idIbgeCity = companie.idIbgeCity ? Number(companie.idIbgeCity) : null
                 this.companies.push(companie)
             }
             return this.companies

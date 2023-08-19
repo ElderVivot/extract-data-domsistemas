@@ -29,6 +29,9 @@ export class Companies {
                     if (companie.dateFinalAsClient && CHECK_DATE_FINAL_COMPANIE_AS_INATIVE) { companie.status = 'I' }
                     companie.status = correlationStatus(companie.status)
                     companie.taxRegime = correlationTaxRegime(companie.taxRegime.toString())
+                    companie.phone = companie.phone || null
+                    companie.email = companie.email || null
+                    companie.cnaes = companie.cnaes || null
                     companie.neighborhood = ''
                     companie.street = ''
                     companie.zipCode = ''
